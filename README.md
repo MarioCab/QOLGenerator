@@ -1,7 +1,7 @@
 # QOLGenerator
 
 [Mario Cabrera] | Slack name: [Mario Cabrera] | Github : [MarioCab]
-[Student Name Here] | Slack name: [Slack name here] | Github : [Github User name]
+[Thomas Kerekes] | Slack name: [Tom Kerekes] | Github : [tkerekes10]
 [Student Name Here] | Slack name: [Slack name here] | Github : [Github User name]
 [Student Name Here] | Slack name: [Slack name here] | Github : [Github User name]
 [Student Name Here] | Slack name: [Slack name here] | Github : [Github User name]
