@@ -7,7 +7,7 @@
 [Thomas Kerekes] | Slack name: [Tom Kerekes] | Github : [tkerekes10]
 [Frank McDermott] | Slack name: [Frank McDermott] | Github : [fmcdermott4]
 [Annakate Pitts] | Slack name: [Annakate Pitts] | Github : [pittsannakate]
-[Matthew Pawlak] | Slack name: [Slack name here] | Github : [Github User name]
+[Matthew Pawlak] | Slack name: [Matthew Pawlak] | Github : [pharaohnof]
 Project Github Page: [GITHUB PAGE HERE]
 Project Github Repo: [https://github.com/MarioCab/QOLGenerator]
 
