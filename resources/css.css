@@ -6,3 +6,6 @@ p {
     flex-wrap: wrap;
     word-wrap: break-word;
 }
+.row{
+    max-width: 100vw;
+}
