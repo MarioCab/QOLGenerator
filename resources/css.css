@@ -1,0 +1,8 @@
+.container-fluid {
+    border-style: solid;
+}
+p {
+    display: flex;  
+    flex-wrap: wrap;
+    word-wrap: break-word;
+}
