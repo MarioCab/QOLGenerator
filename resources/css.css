@@ -1,11 +1,22 @@
 .container-fluid {
-    border-style: solid;
+    /* border-style: solid; */
 }
 p {
     display: flex;  
     flex-wrap: wrap;
-    word-wrap: break-word;
 }
 .row{
     max-width: 100vw;
+}
+#map {
+    max-height: 100%;
+    max-width: 100%;
+}
+
+@media only screen and (max-width: 574px) {
+    #map {
+        min-height: 300px;
+        min-width: 100%;
+    }
+
 }

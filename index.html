@@ -1,8 +1,5 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+
 <html>
     <head>
         <meta charset="utf-8">
@@ -10,6 +7,7 @@
         <title></title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
         <link
         rel="stylesheet"
         href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -18,14 +16,14 @@
         rel="stylesheet" 
         href="resources/css.css"/>
     </head>
-    <body class="col-12 p-0">
+    <body>
         <!--[if lt IE 7]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
         <header>
-            <div class="container p-0 col-12">
+            <div class="col-12 p-0">
                 <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom bg-dark">
-                    <a href="/" class="d-flex align-items-center fs-4  text-light bg-dark text-decoration-none">
+                    <a class="d-flex align-items-center fs-4  text-light bg-dark text-decoration-none">
                         <h1>Quality of Life Research Tool</h1>
                     </a>              
                 </header>
@@ -43,7 +41,6 @@
                     <select name="states" id="states">                        
                     </select>
                 </div>
-
                 <input type="checkbox" id="schoolCheckbox" name="schoolCheckbox" value="School">
                 <label for="schoolCheckbox"> Show me school data</label><br>
                 <input type="checkbox" id="crimeCheckbox" name="crimeCheckbox" value="Crime">
@@ -53,6 +50,9 @@
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>
         </aside>
+        <div id="map">
+
+        </div>
         <section class="col-lg-6 container-fluid">
             <article id="schoolData">
                 <h1>School Data</h1>
@@ -68,8 +68,10 @@
             </article>
         </section>
         </main> 
+        
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-        <script src="resources/js.js" async defer></script>
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>        
+        <script src="resources/js.js"></script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDcCM2rS8Baz7ZgnPKotI3POIqGsaZ4fDw&callback=initMap&libraries=&v=weekly"></script>
     </body>
 </html>
