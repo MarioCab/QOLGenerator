@@ -11,8 +11,8 @@ function statesDropdown() {
         $("#states").append(`<option value="` + states[i] + `" id="` + states[i] + `">` + states[i] + `</option>`)
     }
 }
-function getCity() {
-    var apiUrl = 'https://maps.googleapis.com/maps/api/place/autocomplete/json?input=Waffle House&types=establishment&location=33.753746, -84.386330&radius=10000&key=AIzaSyDcCM2rS8Baz7ZgnPKotI3POIqGsaZ4fDw'
+function getCity(business, lat, long, radius) {
+    var apiUrl = `https://maps.googleapis.com/maps/api/place/autocomplete/json?input=` + business + `&types=establishment&location=` + lat + `,` + long + `&radius=` + radius + `&key=AIzaSyDcCM2rS8Baz7ZgnPKotI3POIqGsaZ4fDw`;
     fetch(apiUrl)
     .then(function (response) {
         if (response.ok) {
