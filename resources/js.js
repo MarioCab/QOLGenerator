@@ -29,11 +29,7 @@ function getCity() {
     });
 };
 // takes data from getCity() and does some work with it
-function waho(data){
-    debugger;
-    var count = data.predictions.length;
-    $("#entertainmentData").empty();
-    $("#entertainmentData").append(`<p>There are ` + count + ` Waffle Houses in this city.`)
+function waho(data){   
 }
 // provides initial map, source code from https://developers.google.com/maps/documentation/javascript/maptypes
 function initMap() {
