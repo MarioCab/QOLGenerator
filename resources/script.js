@@ -51,3 +51,43 @@ let map;
 map = new google.maps.Map(document.getElementById("map"),
     mapOptions);
 }
+
+
+// Tom's Code
+
+var formInput = document.querySelector("#city-form");
+
+var userCityInput = document.querySelector("#cityInput");
+
+var stateInput = document.querySelector("#states");
+
+var formSubmitHandler = function (event) {
+    event.preventDefault();
+  
+var userCity = (userCityInput.value.trim());
+var userState = (stateInput.value.trim());
+
+console.log(userState);
+
+
+var coorApiUrl =
+    "https://api.opencagedata.com/geocode/v1/json?q=" +
+    userCity + ', ' + userState +
+    "&key=267102cdda164e13b2260039c93d4966&language=en&pretty=1";
+
+fetch(coorApiUrl)
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (data) {
+    
+    var cityLat = data.results[0].geometry.lat;
+    var cityLng = data.results[0].geometry.lng;
+
+    console.log(cityLat, cityLng);
+    
+    })
+}
+
+formInput.addEventListener("submit", formSubmitHandler);
+
