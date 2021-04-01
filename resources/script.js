@@ -2,6 +2,13 @@ var schoolData = $("#schoolData");
 var crimeData = $("#crimeData");
 var entertainmentData = $("#entertainmentData");
 $("#map").empty();
+
+let map;
+
+var cityLat; 
+var cityLng;
+
+
 // Populates states dropdown
 statesDropdown();
 // state drop down JS
@@ -71,14 +78,14 @@ function statesDropdown() {
     );
   }
 }
-function getCity(business, lat, long, radius) {
+function getCity(business, cityLat, cityLng, radius) {
   var apiUrl =
     `https://maps.googleapis.com/maps/api/place/autocomplete/json?input=` +
     business +
     `&types=establishment&location=` +
-    lat +
+    cityLat +
     `,` +
-    long +
+    cityLng +
     `&radius=` +
     radius +
     `&key=AIzaSyDcCM2rS8Baz7ZgnPKotI3POIqGsaZ4fDw`;
@@ -99,14 +106,14 @@ function getCity(business, lat, long, radius) {
 // takes data from getCity() and does some work with it
 function waho(data) {}
 // provides initial map, source code from https://developers.google.com/maps/documentation/javascript/maptypes
-function initMap() {
-  $("#map").addClass("col-6 container-fluid");
-  let map;
-  map = new google.maps.Map(document.getElementById("map"), {
-    center: { lat: 33.776115270594, lng: -84.39885020256 },
-    zoom: 10,
-  });
-}
+// function initMap() {
+
+//   $("#map").addClass("col-6 container-fluid");
+//   map = new google.maps.Map(document.getElementById("map"), {
+//     center: { lat: cityLat, lng: cityLng },
+//     zoom: 10,
+//   });
+// }
 // swaps the map to given lat and longitude, code from https://developers.google.com/maps/documentation/javascript/maptypes
 function swapMap(latitude, longitude) {
   var myLatlng = new google.maps.LatLng(latitude, longitude);
@@ -128,6 +135,7 @@ var stateInput = document.querySelector("#states");
 
 var formSubmitHandler = function (event) {
   event.preventDefault();
+  
 
   var userCity = userCityInput.value.trim();
   var userState = stateInput.value.trim();
@@ -148,11 +156,48 @@ var formSubmitHandler = function (event) {
     .then(function (data) {
       // Anything involving using Lat or Long need to be in this (.then) function
 
-      var cityLat = data.results[0].geometry.lat;
-      var cityLng = data.results[0].geometry.lng;
+      cityLat = data.results[0].geometry.lat;
+      cityLng = data.results[0].geometry.lng;
+
+      localStorage.clear();
+
+
+
+    //   function initMap() {
+    //     $("#map").addClass("col-6 container-fluid");
+    //     let map;
+    //     map = new google.maps.Map(document.getElementById("map"), {
+    //       center: { lat: 33.776115270594, lng: -84.39885020256 },
+    //       zoom: 10,
+    //     });
+    //   }
+
+    getMap ();
+    getCity();
+
+    
 
       console.log(cityLat, cityLng);
     });
 };
+
+// function initMap() {
+
+//   $("#map").addClass("col-6 container-fluid");
+//   map = new google.maps.Map(document.getElementById("map"), {
+//     center: {lat: cityLat, lng: cityLng},
+//     zoom: 10,
+//   });
+// }
+
+var getMap = function initMap() {
+
+  $("#map").addClass("col-6 container-fluid");
+  map = new google.maps.Map(document.getElementById("map"), {
+    center: { lat: cityLat, lng: cityLng },
+    zoom: 10,
+  });
+}
+
 
 formInput.addEventListener("submit", formSubmitHandler);
