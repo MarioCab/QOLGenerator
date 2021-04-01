@@ -4,6 +4,8 @@ var entertainmentData = $("#entertainmentData");
 $("#map").empty();
 // Populates states dropdown
 statesDropdown();
+restaurantDropdown();
+mapDropdown();
 // state drop down JS
 function statesDropdown() {
   var states = [
@@ -69,6 +71,33 @@ function statesDropdown() {
         states[i] +
         `</option>`
     );
+  }
+}
+function restaurantDropdown () {
+  var restaurants = [
+    "restaurants",
+    "entertainment",
+    "Vermont"
+  ]
+  for (i=0; i<restaurants.length; i++) {
+    $("#restaurants").append(
+      `<option value="` + restaurants[i] + `" id="` + restaurants[i] +`"> ` + restaurants[i] + `</option>` 
+    )
+     
+  }
+}
+function mapDropdown () {
+  var maptypes = [
+    "Stores",
+    "Parks",
+    "Food",
+    "Medical",
+    "Attractions",
+  ]
+  for (i=0; i<maptypes.length; i++) {
+    $("#maptypes").append(
+      `<option value="` + maptypes[i] + `" id="` + maptypes[i] +`"> ` + maptypes[i] + `</option>`
+    )
   }
 }
 function getCity(business, lat, long, radius) {
