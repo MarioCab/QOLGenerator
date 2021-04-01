@@ -1,75 +1,112 @@
 <!DOCTYPE html>
 
 <html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title></title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-        <link
-        rel="stylesheet"
-        href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        />
-        <link 
-        rel="stylesheet" 
-        href="resources/css.css"/>
-    </head>
-    <body>
-        <!--[if lt IE 7]>
-            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->
-        <header>
-            <div class="col-12 p-0">
-                <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom bg-dark">
-                    <a class="d-flex align-items-center fs-4  text-light bg-dark text-decoration-none">
-                        <h1>Quality of Life Research Tool</h1>
-                    </a>              
-                </header>
-            </div>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title></title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="resources/style.css" />
+  </head>
+  <body>
+    <!--[if lt IE 7]>
+      <p class="browsehappy">
+        You are using an <strong>outdated</strong> browser. Please
+        <a href="#">upgrade your browser</a> to improve your experience.
+      </p>
+    <![endif]-->
+    <header>
+      <div class="col-12 p-0">
+        <header
+          class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom bg-dark"
+        >
+          <a
+            class="d-flex align-items-center fs-4 text-light bg-dark text-decoration-none"
+          >
+            <h1>Quality of Life Research Tool</h1>
+          </a>
         </header>
-        <main class="row justify-content-around">
-        <aside class="col-lg-3 col-sm-6 container-fluid">
-            <form>
-                <div class="mb-3">
-                    <label for="cityInput" class="form-label">What city are you interested in?</label>
-                    <input type="text" class="form-control" id="cityInput">
-                </div>
-                <div>
-                    <label for="states">In what state?</label>
-                    <select name="states" id="states">                        
-                    </select>
-                </div>
-                <input type="checkbox" id="schoolCheckbox" name="schoolCheckbox" value="School">
-                <label for="schoolCheckbox"> Show me school data</label><br>
-                <input type="checkbox" id="crimeCheckbox" name="crimeCheckbox" value="Crime">
-                <label for="crimeCheckbox"> Show me crime statistics</label><br>
-                <input type="checkbox" id="entertainmentCheckbox" name="entertainmentCheckbox" value="entertainment">
-                <label for="entertainmentCheckbox"> Show me local entertainment</label><br>
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </form>
-        </aside>
-        <div id="map"></div>
-        <section class="col-lg-6 container-fluid">
-            <article id="schoolData">
-                <h1>School Data</h1>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus ea voluptatem fugiat necessitatibus velit at deserunt nostrum repellat tenetur, in, ab est accusantium, saepe dolore perferendis quas repellendus. Dolorum, minima.</p>
-            </article>
-            <article id="crimeData">
-                <h1>Crime Data</h1>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas inventore quibusdam excepturi illo, iste fugit esse nobis rem vel dolore a placeat officiis. Veritatis aliquid voluptate eaque blanditiis perferendis corrupti.</p>
-            </article>
-            <article id="entertainmentData">
-                <h1>Entertainment</h1>
-                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Culpa praesentium est unde beatae commodi deleniti iste ducimus, inventore fugiat nam in quod itaque quisquam dignissimos! Consequatur animi ducimus voluptatem amet.</p>
-            </article>
-        </section>
-        </main> 
-        
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>        
-        <script src="resources/js.js"></script>
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDcCM2rS8Baz7ZgnPKotI3POIqGsaZ4fDw&callback=initMap&libraries=&v=weekly"></script>
-    </body>
+      </div>
+    </header>
+    <main class="row justify-content-around">
+      <aside class="col-lg-3 col-sm-6 container-fluid">
+        <form>
+          <div class="mb-3">
+            <label for="cityInput" class="form-label"
+              >What city are you interested in?</label
+            >
+            <input type="text" class="form-control" id="cityInput" />
+          </div>
+          <div>
+            <label for="states">In what state?</label>
+            <select name="states" id="states"></select>
+          </div>
+          <input
+            type="checkbox"
+            id="schoolCheckbox"
+            name="schoolCheckbox"
+            value="School"
+          />
+          <label for="schoolCheckbox"> Show me school data</label><br />
+          <input
+            type="checkbox"
+            id="crimeCheckbox"
+            name="crimeCheckbox"
+            value="Crime"
+          />
+          <label for="crimeCheckbox"> Show me crime statistics</label><br />
+          <input
+            type="checkbox"
+            id="entertainmentCheckbox"
+            name="entertainmentCheckbox"
+            value="entertainment"
+          />
+          <label for="entertainmentCheckbox"> Show me local entertainment</label
+          ><br />
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+      </aside>
+      <div id="map"></div>
+      <section class="col-lg-6 container-fluid">
+        <article id="schoolData">
+          <h1>School Data</h1>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus
+            ea voluptatem fugiat necessitatibus velit at deserunt nostrum
+            repellat tenetur, in, ab est accusantium, saepe dolore perferendis
+            quas repellendus. Dolorum, minima.
+          </p>
+        </article>
+        <article id="crimeData">
+          <h1>Crime Data</h1>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas
+            inventore quibusdam excepturi illo, iste fugit esse nobis rem vel
+            dolore a placeat officiis. Veritatis aliquid voluptate eaque
+            blanditiis perferendis corrupti.
+          </p>
+        </article>
+        <article id="entertainmentData">
+          <h1>Entertainment</h1>
+          <p>
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Culpa
+            praesentium est unde beatae commodi deleniti iste ducimus, inventore
+            fugiat nam in quod itaque quisquam dignissimos! Consequatur animi
+            ducimus voluptatem amet.
+          </p>
+        </article>
+      </section>
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="resources/script.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDcCM2rS8Baz7ZgnPKotI3POIqGsaZ4fDw&callback=initMap&libraries=&v=weekly"></script>
+  </body>
 </html>
