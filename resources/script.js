@@ -6,52 +6,117 @@ $("#map").empty();
 statesDropdown();
 // state drop down JS
 function statesDropdown() {
-    var states = ['Alabama','Alaska','Arizona','Arkansas','California','Colorado','Connecticut','Delaware','District of Columbia','Florida','Georgia','Hawaii','Idaho','Illinois','Indiana','Iowa','Kansas','Kentucky','Louisiana','Maine','Maryland','Massachusetts','Michigan','Minnesota','Mississippi','Missouri','Montana','Nebraska','Nevada','New Hampshire','New Jersey','New Mexico','New York','North Carolina','North Dakota','Ohio','Oklahoma','Oregon','Pennsylvania','Rhode Island','South Carolina','South Dakota','Tennessee','Texas','Utah','Vermont','Virginia','Washington','West Virginia','Wisconsin','Wyoming']
-    for (i=0; i<states.length;i++){
-        $("#states").append(`<option value="` + states[i] + `" id="` + states[i] + `">` + states[i] + `</option>`)
-    }
+  var states = [
+    "Alabama",
+    "Alaska",
+    "Arizona",
+    "Arkansas",
+    "California",
+    "Colorado",
+    "Connecticut",
+    "Delaware",
+    "District of Columbia",
+    "Florida",
+    "Georgia",
+    "Hawaii",
+    "Idaho",
+    "Illinois",
+    "Indiana",
+    "Iowa",
+    "Kansas",
+    "Kentucky",
+    "Louisiana",
+    "Maine",
+    "Maryland",
+    "Massachusetts",
+    "Michigan",
+    "Minnesota",
+    "Mississippi",
+    "Missouri",
+    "Montana",
+    "Nebraska",
+    "Nevada",
+    "New Hampshire",
+    "New Jersey",
+    "New Mexico",
+    "New York",
+    "North Carolina",
+    "North Dakota",
+    "Ohio",
+    "Oklahoma",
+    "Oregon",
+    "Pennsylvania",
+    "Rhode Island",
+    "South Carolina",
+    "South Dakota",
+    "Tennessee",
+    "Texas",
+    "Utah",
+    "Vermont",
+    "Virginia",
+    "Washington",
+    "West Virginia",
+    "Wisconsin",
+    "Wyoming",
+  ];
+  for (i = 0; i < states.length; i++) {
+    $("#states").append(
+      `<option value="` +
+        states[i] +
+        `" id="` +
+        states[i] +
+        `">` +
+        states[i] +
+        `</option>`
+    );
+  }
 }
 function getCity(business, lat, long, radius) {
-    var apiUrl = `https://maps.googleapis.com/maps/api/place/autocomplete/json?input=` + business + `&types=establishment&location=` + lat + `,` + long + `&radius=` + radius + `&key=AIzaSyDcCM2rS8Baz7ZgnPKotI3POIqGsaZ4fDw`;
-    fetch(apiUrl)
+  var apiUrl =
+    `https://maps.googleapis.com/maps/api/place/autocomplete/json?input=` +
+    business +
+    `&types=establishment&location=` +
+    lat +
+    `,` +
+    long +
+    `&radius=` +
+    radius +
+    `&key=AIzaSyDcCM2rS8Baz7ZgnPKotI3POIqGsaZ4fDw`;
+  fetch(apiUrl)
     .then(function (response) {
-        if (response.ok) {
-            response.json().then(function (data) {
-                    waho(data);
-                
+      if (response.ok) {
+        response.json().then(function (data) {
+          waho(data);
         });
-        } else {
-            alert('Error: ' + response.statusText);
-        }
+      } else {
+        alert("Error: " + response.statusText);
+      }
     })
     .catch(function (error) {
-        alert('Unable to connect to Google');
+      alert("Unable to connect to Google");
     });
-};
-// takes data from getCity() and does some work with it
-function waho(data){   
 }
+// takes data from getCity() and does some work with it
+function waho(data) {}
 // provides initial map, source code from https://developers.google.com/maps/documentation/javascript/maptypes
 function initMap() {
-    $("#map").addClass("col-6 container-fluid");
-    let map;
-    map = new google.maps.Map(document.getElementById("map"), {
+  $("#map").addClass("col-6 container-fluid");
+  let map;
+  map = new google.maps.Map(document.getElementById("map"), {
     center: { lat: 33.776115270594, lng: -84.39885020256 },
     zoom: 10,
-    });
+  });
 }
 // swaps the map to given lat and longitude, code from https://developers.google.com/maps/documentation/javascript/maptypes
 function swapMap(latitude, longitude) {
-    var myLatlng = new google.maps.LatLng(latitude, longitude);
-    var mapOptions = {
+  var myLatlng = new google.maps.LatLng(latitude, longitude);
+  var mapOptions = {
     zoom: 10,
     center: myLatlng,
-};
-let map;
-map = new google.maps.Map(document.getElementById("map"),
-    mapOptions);
+  };
+  let map;
+  map = new google.maps.Map(document.getElementById("map"), mapOptions);
 }
-
 
 // Tom's Code
 
@@ -62,32 +127,32 @@ var userCityInput = document.querySelector("#cityInput");
 var stateInput = document.querySelector("#states");
 
 var formSubmitHandler = function (event) {
-    event.preventDefault();
-  
-var userCity = (userCityInput.value.trim());
-var userState = (stateInput.value.trim());
+  event.preventDefault();
 
-console.log(userState);
+  var userCity = userCityInput.value.trim();
+  var userState = stateInput.value.trim();
 
+  console.log(userState);
 
-var coorApiUrl =
+  var coorApiUrl =
     "https://api.opencagedata.com/geocode/v1/json?q=" +
-    userCity + ', ' + userState +
+    userCity +
+    ", " +
+    userState +
     "&key=267102cdda164e13b2260039c93d4966&language=en&pretty=1";
 
-fetch(coorApiUrl)
+  fetch(coorApiUrl)
     .then(function (response) {
       return response.json();
     })
     .then(function (data) {
-    
-    var cityLat = data.results[0].geometry.lat;
-    var cityLng = data.results[0].geometry.lng;
+      // Anything involving using Lat or Long need to be in this (.then) function
 
-    console.log(cityLat, cityLng);
-    
-    })
-}
+      var cityLat = data.results[0].geometry.lat;
+      var cityLng = data.results[0].geometry.lng;
+
+      console.log(cityLat, cityLng);
+    });
+};
 
 formInput.addEventListener("submit", formSubmitHandler);
-
