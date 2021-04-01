@@ -28,13 +28,14 @@ function getCity() {
         alert('Unable to connect to Google');
     });
 };
+// takes data from getCity() and does some work with it
 function waho(data){
     debugger;
     var count = data.predictions.length;
     $("#entertainmentData").empty();
     $("#entertainmentData").append(`<p>There are ` + count + ` Waffle Houses in this city.`)
 }
-// provides initial map
+// provides initial map, source code from https://developers.google.com/maps/documentation/javascript/maptypes
 function initMap() {
     $("#map").addClass("col-6 container-fluid");
     let map;
@@ -43,6 +44,7 @@ function initMap() {
     zoom: 10,
     });
 }
+// swaps the map to given lat and longitude, code from https://developers.google.com/maps/documentation/javascript/maptypes
 function swapMap(latitude, longitude) {
     var myLatlng = new google.maps.LatLng(latitude, longitude);
     var mapOptions = {
