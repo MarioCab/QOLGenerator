@@ -240,6 +240,8 @@ var formSubmitHandler = function (event) {
         default:
           mapID = `ed6a12bea346f8b0`;
       }
+      console.log(mapID);
+      insertScript();
     });
 };
 
@@ -255,7 +257,7 @@ var attractionsMap = `a2cdf53ce4646f08`;
 function initAllMap() {
   map = new google.maps.Map(document.getElementById("map"), {
     center: { lat: cityLat, lng: cityLng },
-    zoom: 20,
+    zoom: 15,
     mapId: mapID,
   });
 }
@@ -268,7 +270,7 @@ function insertScript() {
   script.dataset.cfasync = false;
   document.body.appendChild(script);
   script.addEventListener("load", () => {
-    console.log("yeahhhh");
+    console.log("The errors are not important to the function of this Web App");
     resolve();
   });
 }
@@ -291,33 +293,34 @@ let mapTypes;
 
 // insertScript();
 
-switch (mapTypes) {
-  case 'All': //day === 'monday'
-      mapID = `ed6a12bea346f8b0`;
-      break;
+// switch (mapTypes) {
+//   case 'All': //day === 'monday'
+//       mapID = `ed6a12bea346f8b0`;
+//       break;
 
-  case 'Stores':
-      mapID = storeMap;
-      break;
+//   case 'Stores':
+//       mapID = storeMap;
+//       break;
 
-  case 'Parks':
-      mapID = `84fb282f7a18eb54`;
-      break;
+//   case 'Parks':
+//       mapID = `84fb282f7a18eb54`;
+//       break;
 
-  case 'Medical':
-      mapID = `c45b75f0bf14b409`;
-      break;
-  case 'Food':
-      mapID = `bdd06fabc2883316`;
-      break;
+//   case 'Medical':
+//       mapID = `c45b75f0bf14b409`;
+//       break;
+//   case 'Food':
+//       mapID = `bdd06fabc2883316`;
+//       break;
 
-  case 'Attractions':
-      mapID = `a2cdf53ce4646f08`;
-      break;
+//   case 'Attractions':
+//       mapID = `a2cdf53ce4646f08`;
+//       break;
   
-  default:
-    mapID = `ed6a12bea346f8b0`;
-}
+//   default:
+//     mapID = `ed6a12bea346f8b0`;
+// }
+
 
 insertScript();
 
