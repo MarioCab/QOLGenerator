@@ -95,6 +95,7 @@ function restaurantDropdown () {
 }
 function mapDropdown () {
   var mapTypes = [
+    "All",
     "Stores",
     "Parks",
     "Food",
