@@ -5,11 +5,11 @@ $("#map").empty();
 
 let map;
 
-var cityLat; 
+var cityLat;
 var cityLng;
 const histBtnGrp = document.getElementById("history-button-group");
 const histDrpGrp = document.getElementById("history-dropdown");
-const searchBtn = $("#searchBtn")
+const searchBtn = $("#searchBtn");
 const storedHist = localStorage.getItem("storedHistStr"); //string of all stored score data
 
 let userCity;
@@ -21,9 +21,6 @@ var formInput = document.querySelector("#city-form");
 var userCityInput = document.querySelector("#cityInput");
 
 var stateInput = document.querySelector("#states");
-
-
-
 
 // Populates states dropdown
 statesDropdown();
@@ -104,28 +101,27 @@ function statesDropdown() {
 //   ]
 //   for (i=0; i<restaurants.length; i++) {
 //     $("#restaurants").append(
-//       `<option value="` + restaurants[i] + `" id="` + restaurants[i] +`"> ` + restaurants[i] + `</option>` 
+//       `<option value="` + restaurants[i] + `" id="` + restaurants[i] +`"> ` + restaurants[i] + `</option>`
 //     )
-     
+
 //   }
 // }
-function mapDropdown () {
-  var mapTypes = [
-    "All",
-    "Stores",
-    "Parks",
-    "Food",
-    "Medical",
-    "Attractions",
-  ]
-  for (i=0; i<mapTypes.length; i++) {
+function mapDropdown() {
+  var mapTypes = ["All", "Stores", "Parks", "Food", "Medical", "Attractions"];
+  for (i = 0; i < mapTypes.length; i++) {
     $("#maptypes").append(
-      `<option value="` + mapTypes[i] + `" id="` + mapTypes[i] +`"> ` + mapTypes[i] + `</option>`
-    )
+      `<option value="` +
+        mapTypes[i] +
+        `" id="` +
+        mapTypes[i] +
+        `"> ` +
+        mapTypes[i] +
+        `</option>`
+    );
   }
 }
 function getCity(business, lat, long, radius) {
-  console.log('get city fired')
+  console.log("get city fired");
   var apiUrl =
     `https://maps.googleapis.com/maps/api/place/autocomplete/json?input=` +
     business +
@@ -185,27 +181,25 @@ var userTypeInput = document.querySelector("#maptypes");
 
 var formSubmitHandler = function (event) {
   event.preventDefault();
-  
 
-   userCity = userCityInput.value.trim();
-   userState = stateInput.value.trim();
-   mapTypes = userTypeInput.value;
+  userCity = userCityInput.value.trim();
+  userState = stateInput.value.trim();
+  mapTypes = userTypeInput.value;
 
-   searchInnerTxt= `${userCity}, ${userState}, ${maptypes}`
+  searchInnerTxt = `${userCity}, ${userState}, ${maptypes}`;
 
+  searchTxt = {
+    cityState: `${userCity}, ${userState}`,
+    map: mapTypes,
+  };
 
-   searchTxt = {
-     cityState:`${userCity}, ${userState}`,
-     map:mapTypes
-   }
-   
   //  `${userCity}, ${userState}, ${mapTypes}`;
 
-  
   console.log(userState);
 
   var coorApiUrl =
-    "https://api.opencagedata.com/geocode/v1/json?q=" +searchTxt.cityState+
+    "https://api.opencagedata.com/geocode/v1/json?q=" +
+    searchTxt.cityState +
     // userCity +
     // ", " +
     // userState +
@@ -223,99 +217,92 @@ var formSubmitHandler = function (event) {
 
       // localStorage.clear();
 
+      //   function initMap() {
+      //     $("#map").addClass("col-6 container-fluid");
+      //     let map;
+      //     map = new google.maps.Map(document.getElementById("map"), {
+      //       center: { lat: 33.776115270594, lng: -84.39885020256 },
+      //       zoom: 10,
+      //     });
+      //   }
 
+      // getMap ();
+      // getCity();
 
-    //   function initMap() {
-    //     $("#map").addClass("col-6 container-fluid");
-    //     let map;
-    //     map = new google.maps.Map(document.getElementById("map"), {
-    //       center: { lat: 33.776115270594, lng: -84.39885020256 },
-    //       zoom: 10,
-    //     });
-    //   }
+      // saveInput();
+      // // getMap ();
+      // getCity();
 
-    // getMap ();
-    // getCity();
-  
-    // saveInput();
-    // // getMap ();
-    // getCity();
-    
+      //   console.log(cityLat, cityLng);
 
-    
+      //   switch (mapTypes) {
+      //     case 'All': //day === 'monday'
+      //         mapID = `ed6a12bea346f8b0`;
+      //         break;
 
-    //   console.log(cityLat, cityLng);
+      //     case 'Stores':
+      //         mapID = storeMap;
+      //         break;
 
-    //   switch (mapTypes) {
-    //     case 'All': //day === 'monday'
-    //         mapID = `ed6a12bea346f8b0`;
-    //         break;
-      
-    //     case 'Stores':
-    //         mapID = storeMap;
-    //         break;
-      
-    //     case 'Parks':
-    //         mapID = `84fb282f7a18eb54`;
-    //         break;
-      
-    //     case 'Medical':
-    //         mapID = `c45b75f0bf14b409`;
-    //         break;
-    //     case 'Food':
-    //         mapID = `bdd06fabc2883316`;
-    //         break;
-      
-    //     case 'Attractions':
-    //         mapID = `a2cdf53ce4646f08`;
-    //         break;
-        
-    //     default:
-    //       mapID = `ed6a12bea346f8b0`;
-    //   }
-    //   console.log(mapID);
-    //   insertScript();
+      //     case 'Parks':
+      //         mapID = `84fb282f7a18eb54`;
+      //         break;
+
+      //     case 'Medical':
+      //         mapID = `c45b75f0bf14b409`;
+      //         break;
+      //     case 'Food':
+      //         mapID = `bdd06fabc2883316`;
+      //         break;
+
+      //     case 'Attractions':
+      //         mapID = `a2cdf53ce4646f08`;
+      //         break;
+
+      //     default:
+      //       mapID = `ed6a12bea346f8b0`;
+      //   }
+      //   console.log(mapID);
+      //   insertScript();
       saveInput();
       switchFunction();
     });
 };
 
-function switchFunction (){
+function switchFunction() {
   // saveInput();
   getCity();
   console.log(cityLat, cityLng);
 
   switch (mapTypes) {
-    case 'All': //day === 'monday'
-        mapID = `ed6a12bea346f8b0`;
-        break;
-  
-    case 'Stores':
-        mapID = storeMap;
-        break;
-  
-    case 'Parks':
-        mapID = `84fb282f7a18eb54`;
-        break;
-  
-    case 'Medical':
-        mapID = `c45b75f0bf14b409`;
-        break;
-    case 'Food':
-        mapID = `bdd06fabc2883316`;
-        break;
-  
-    case 'Attractions':
-        mapID = `a2cdf53ce4646f08`;
-        break;
-    
+    case "All": //day === 'monday'
+      mapID = `ed6a12bea346f8b0`;
+      break;
+
+    case "Stores":
+      mapID = storeMap;
+      break;
+
+    case "Parks":
+      mapID = `84fb282f7a18eb54`;
+      break;
+
+    case "Medical":
+      mapID = `c45b75f0bf14b409`;
+      break;
+    case "Food":
+      mapID = `bdd06fabc2883316`;
+      break;
+
+    case "Attractions":
+      mapID = `a2cdf53ce4646f08`;
+      break;
+
     default:
       mapID = `ed6a12bea346f8b0`;
   }
   console.log(mapID);
   insertScript();
-
-
 }
 // var getMap = function initMap() {
 
@@ -329,7 +316,7 @@ var foodMap = `bdd06fabc2883316`;
 var attractionsMap = `a2cdf53ce4646f08`;
 
 function initAllMap() {
-  console.log('initAllMap fired')
+  console.log("initAllMap fired");
   $("#map").addClass("col-6 container-fluid");
   map = new google.maps.Map(document.getElementById("map"), {
     center: { lat: cityLat, lng: cityLng },
@@ -339,11 +326,11 @@ function initAllMap() {
 }
 
 function insertScript() {
-  if(document.getElementById("newMap")) {
+  if (document.getElementById("newMap")) {
     document.getElementById("newMap").remove();
   }
   const script = document.createElement("script");
-  script.setAttribute('id', 'newMap');
+  script.setAttribute("id", "newMap");
   script.type = "text/javascript";
   script.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyBAXFUJe8DV3hitr0g0IIU07bDHi5215qY&map_ids=${mapID}&callback=initAllMap`;
   script.async = true;
@@ -353,17 +340,6 @@ function insertScript() {
     // resolve();
   });
 }
-
-
-// var getMap = function initMap() {
-
-//   
-//   map = new google.maps.Map(document.getElementById("map"), {
-//     center: { lat: cityLat, lng: cityLng },
-//     zoom: 10,
-//   });
-// }
-
 
 formInput.addEventListener("submit", formSubmitHandler);
 
@@ -375,96 +351,58 @@ if (storedHist == null) {
 }
 
 function saveInput() {
-
   console.log("submit button clicked");
-  
+
   console.log(searchTxt);
-  // console.log(searchCap);
   histArr.unshift(searchTxt);
-  if (histArr.length > 10) {
+  if (histArr.length > 4) {
     histArr.pop();
   }
 
   localStorage.setItem("storedHistStr", JSON.stringify(histArr));
   histBtnGrp.innerHTML = "";
-  // histDrpGrp.innerHTML = "";
   histArr.forEach(makeHistoryBtn);
-};
+}
 //CREATE HISTORY BUTTONS AND DROPDOWN BUTTONS ON MOBILE SCREENS--------------------------------------------------
 histArr.forEach(makeHistoryBtn);
 function makeHistoryBtn(item, index) {
-  const searchCap = item.cityState.charAt(0).toUpperCase() + item.cityState.slice(1)
+  const searchCap =
+    item.cityState.charAt(0).toUpperCase() + item.cityState.slice(1);
 
-  console.log("makeHistoryBtn fired")
+  console.log("makeHistoryBtn fired");
   const historyBtn = document.createElement("button");
   historyBtn.setAttribute("id", `button-${index}`);
   historyBtn.setAttribute("type", "button");
-  historyBtn.setAttribute("class", "btn btn-light border histBtn");
+  historyBtn.setAttribute("class", "btn border histBtn");
   historyBtn.innerHTML = searchCap + ", " + item.map;
   historyBtn.dataset.cityState = item.cityState;
-  historyBtn.dataset.map=item.map;
+  historyBtn.dataset.map = item.map;
   histBtnGrp.appendChild(historyBtn);
-  const histDrp = document.createElement("button");
-  histDrp.setAttribute("id", `button-${index}`);
-  histDrp.setAttribute("type", "button");
-  histDrp.setAttribute("class", "btn btn-light histBtn");
-  histDrp.innerHTML = `${item}`;
-  histDrpGrp.appendChild(histDrp);
-  //MAKE BUTTONS AND DROPDOWNS FUNCTION---------------------------------------------------
+
+  //MAKE BUTTONS FUNCTION---------------------------------------------------
   $(historyBtn).on("click", function fillField() {
     console.log("button pressed" + this.dataset.citySt);
-    searchTxt=this.dataset.cityState;
-    mapTypes=this.dataset.map;
-    // searchInput.value = this.innerText;
-    // searchBtn.click();
+    searchTxt = this.dataset.cityState;
+    mapTypes = this.dataset.map;
+
     var coorApiUrl =
-    "https://api.opencagedata.com/geocode/v1/json?q=" +searchTxt+
-    // userCity +
-    // ", " +
-    // userState +
-    "&key=267102cdda164e13b2260039c93d4966&language=en&pretty=1";
+      "https://api.opencagedata.com/geocode/v1/json?q=" +
+      searchTxt +
+      "&key=267102cdda164e13b2260039c93d4966&language=en&pretty=1";
 
-  fetch(coorApiUrl)
-    .then(function (response) {
-      return response.json();
-    })
-    .then(function (data) {
-      // Anything involving using Lat or Long need to be in this (.then) function
+    fetch(coorApiUrl)
+      .then(function (response) {
+        return response.json();
+      })
+      .then(function (data) {
+        // Anything involving using Lat or Long need to be in this (.then) function
 
-      cityLat = data.results[0].geometry.lat;
-      cityLng = data.results[0].geometry.lng;
-
-      // localStorage.clear();
-
-
-
-    //   function initMap() {
-    //     $("#map").addClass("col-6 container-fluid");
-    //     let map;
-    //     map = new google.maps.Map(document.getElementById("map"), {
-    //       center: { lat: 33.776115270594, lng: -84.39885020256 },
-    //       zoom: 10,
-    //     });
-    //   }
-
-    // getMap ();
-    // getCity();
-  
-    // saveInput();
-
-    
-
-      console.log(cityLat, cityLng);
-      switchFunction();
-    });
-
+        cityLat = data.results[0].geometry.lat;
+        cityLng = data.results[0].geometry.lng;
+        console.log(cityLat, cityLng);
+        switchFunction();
+      });
   });
-
-  // $(histDrp).on("click", function fillField() {
-  //   console.log("button pressed" + this.innerText);
-  //   searchInput.value = this.innerText;
-  //   searchBtn.click();
-  // });
 }
 let mapID;
 let mapTypes;
@@ -494,11 +432,10 @@ let mapTypes;
 //   case 'Attractions':
 //       mapID = `a2cdf53ce4646f08`;
 //       break;
-  
+
 //   default:
 //     mapID = `ed6a12bea346f8b0`;
 // }
-
 
 // insertScript();
 
@@ -513,4 +450,3 @@ let mapTypes;
 //     });
 // }
 // getNearbyPlaces();
-
