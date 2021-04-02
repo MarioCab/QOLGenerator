@@ -163,12 +163,15 @@ var userCityInput = document.querySelector("#cityInput");
 
 var stateInput = document.querySelector("#states");
 
+var userTypeInput = document.querySelector("#maptypes");
+
 var formSubmitHandler = function (event) {
   event.preventDefault();
   
 
   var userCity = userCityInput.value.trim();
   var userState = stateInput.value.trim();
+  mapTypes = userTypeInput.value;
 
   console.log(userState);
 
@@ -204,15 +207,44 @@ var formSubmitHandler = function (event) {
 
     getMap ();
     getCity();
+    
 
     
 
       console.log(cityLat, cityLng);
+
+      switch (mapTypes) {
+        case 'All': //day === 'monday'
+            mapID = `ed6a12bea346f8b0`;
+            break;
+      
+        case 'Stores':
+            mapID = storeMap;
+            break;
+      
+        case 'Parks':
+            mapID = `84fb282f7a18eb54`;
+            break;
+      
+        case 'Medical':
+            mapID = `c45b75f0bf14b409`;
+            break;
+        case 'Food':
+            mapID = `bdd06fabc2883316`;
+            break;
+      
+        case 'Attractions':
+            mapID = `a2cdf53ce4646f08`;
+            break;
+        
+        default:
+          mapID = `ed6a12bea346f8b0`;
+      }
     });
 };
 
-var lat = 33.952602;
-var lng = -84.549934;
+// var lat = cityLat;
+// var lng = cityLng;
 var allMaps = `ed6a12bea346f8b0`;
 var storeMap = `f405f4ac9fa44d8f`;
 var parksMap = `84fb282f7a18eb54`;
@@ -222,16 +254,16 @@ var attractionsMap = `a2cdf53ce4646f08`;
 
 function initAllMap() {
   map = new google.maps.Map(document.getElementById("map"), {
-    center: { lat: lat, lng: lng },
-    zoom: 15,
-    mapId: allMaps,
+    center: { lat: cityLat, lng: cityLng },
+    zoom: 20,
+    mapId: mapID,
   });
 }
 
 function insertScript() {
   const script = document.createElement("script");
   script.type = "text/javascript";
-  script.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyBAXFUJe8DV3hitr0g0IIU07bDHi5215qY&map_ids=${allMaps}&callback=initAllMap`;
+  script.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyBAXFUJe8DV3hitr0g0IIU07bDHi5215qY&map_ids=${mapID}&callback=initAllMap`;
   script.async = true;
   script.dataset.cfasync = false;
   document.body.appendChild(script);
@@ -240,7 +272,7 @@ function insertScript() {
     resolve();
   });
 }
-insertScript();
+
 
 var getMap = function initMap() {
 
@@ -254,14 +286,50 @@ var getMap = function initMap() {
 
 formInput.addEventListener("submit", formSubmitHandler);
 
-function getNearbyPlaces() {
-  var placesURL = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=33.776,-84.398&radius=5000&type=police&key=AIzaSyBAXFUJe8DV3hitr0g0IIU07bDHi5215qY`;
-  fetch(placesURL)
-    .then(function (response) {
-      return response.json();
-    })
-    .then(function (data) {
-      console.log(data);
-    });
+let mapID;
+let mapTypes;
+
+// insertScript();
+
+switch (mapTypes) {
+  case 'All': //day === 'monday'
+      mapID = `ed6a12bea346f8b0`;
+      break;
+
+  case 'Stores':
+      mapID = storeMap;
+      break;
+
+  case 'Parks':
+      mapID = `84fb282f7a18eb54`;
+      break;
+
+  case 'Medical':
+      mapID = `c45b75f0bf14b409`;
+      break;
+  case 'Food':
+      mapID = `bdd06fabc2883316`;
+      break;
+
+  case 'Attractions':
+      mapID = `a2cdf53ce4646f08`;
+      break;
+  
+  default:
+    mapID = `ed6a12bea346f8b0`;
 }
-getNearbyPlaces();
+
+insertScript();
+
+// function getNearbyPlaces() {
+//   var placesURL = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=33.776,-84.398&radius=5000&type=police&key=AIzaSyBAXFUJe8DV3hitr0g0IIU07bDHi5215qY`;
+//   fetch(placesURL)
+//     .then(function (response) {
+//       return response.json();
+//     })
+//     .then(function (data) {
+//       console.log(data);
+//     });
+// }
+// getNearbyPlaces();
+
