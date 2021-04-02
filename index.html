@@ -69,8 +69,22 @@
           />
           <label for="entertainmentCheckbox"> Show me local entertainment</label
           ><br />
-          <button type="submit" class="btn btn-primary">Submit</button>
+          <button id="searchBtn" type="submit" class="btn btn-primary">Submit</button>
         </form>
+        <div id="history-button-group" class="btn-group-vertical margin-force col-12 d-none d-md-flex shadow" role="group">
+        </div>
+        <div class="btn-group col-12">
+          <button class="btn btn-secondary btn-lg dropdown-toggle d-md-none" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            History
+          </button>
+          <ul class="dropdown-menu dropdown-menu-end">
+            <div id="history-dropdown" class="btn-group-vertical col-12  " role="group" aria-label="Basic example">
+            </div>
+
+          </ul>
+        </div>
+
+
       </aside>
       <div id="map"></div>
       <section class="col-lg-6 container-fluid">
