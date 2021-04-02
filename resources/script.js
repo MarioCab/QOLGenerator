@@ -205,7 +205,7 @@ var formSubmitHandler = function (event) {
     //     });
     //   }
 
-    getMap ();
+    // getMap ();
     getCity();
     
 
@@ -255,6 +255,7 @@ var foodMap = `bdd06fabc2883316`;
 var attractionsMap = `a2cdf53ce4646f08`;
 
 function initAllMap() {
+  $("#map").addClass("col-6 container-fluid");
   map = new google.maps.Map(document.getElementById("map"), {
     center: { lat: cityLat, lng: cityLng },
     zoom: 15,
@@ -263,27 +264,30 @@ function initAllMap() {
 }
 
 function insertScript() {
+  if(document.getElementById("newMap")) {
+    document.getElementById("newMap").remove();
+  }
   const script = document.createElement("script");
+  script.setAttribute('id', 'newMap');
   script.type = "text/javascript";
   script.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyBAXFUJe8DV3hitr0g0IIU07bDHi5215qY&map_ids=${mapID}&callback=initAllMap`;
   script.async = true;
   script.dataset.cfasync = false;
   document.body.appendChild(script);
   script.addEventListener("load", () => {
-    console.log("The errors are not important to the function of this Web App");
-    resolve();
+    // resolve();
   });
 }
 
 
-var getMap = function initMap() {
+// var getMap = function initMap() {
 
-  $("#map").addClass("col-6 container-fluid");
-  map = new google.maps.Map(document.getElementById("map"), {
-    center: { lat: cityLat, lng: cityLng },
-    zoom: 10,
-  });
-}
+//   
+//   map = new google.maps.Map(document.getElementById("map"), {
+//     center: { lat: cityLat, lng: cityLng },
+//     zoom: 10,
+//   });
+// }
 
 
 formInput.addEventListener("submit", formSubmitHandler);
@@ -322,7 +326,7 @@ let mapTypes;
 // }
 
 
-insertScript();
+// insertScript();
 
 // function getNearbyPlaces() {
 //   var placesURL = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=33.776,-84.398&radius=5000&type=police&key=AIzaSyBAXFUJe8DV3hitr0g0IIU07bDHi5215qY`;
