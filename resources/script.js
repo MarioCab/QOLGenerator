@@ -81,7 +81,7 @@ function getCity(business, lat, long, radius) {
     long +
     `&radius=` +
     radius +
-    `&key=AIzaSyDcCM2rS8Baz7ZgnPKotI3POIqGsaZ4fDw`;
+    `&key=AIzaSyBAXFUJe8DV3hitr0g0IIU07bDHi5215qY&map_ids=ed6a12bea346f8b0`;
   fetch(apiUrl)
     .then(function (response) {
       if (response.ok) {
@@ -156,3 +156,15 @@ var formSubmitHandler = function (event) {
 };
 
 formInput.addEventListener("submit", formSubmitHandler);
+
+function getNearbyPlaces() {
+  var placesURL = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=33.776,-84.398&radius=5000&type=police&key=AIzaSyBAXFUJe8DV3hitr0g0IIU07bDHi5215qY`;
+  fetch(placesURL)
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (data) {
+      console.log(data);
+    });
+}
+getNearbyPlaces();
