@@ -23,7 +23,7 @@ Upon searching for their city, state, and specific needs,
 
 A map will appear with the chosen elements present in that particular area. Additionally, we used local storage to show the search history below the search bar as seen below.
 
-![Athens, Georgia search bar with map and history showing](searchwithmap.png);
+![Athens, Georgia search bar with map and history showing](./resources/images/searchwithmap.png);
 
 # Technologies used 
 
