@@ -119,33 +119,6 @@ function mapDropdown() {
   }
 }
 
-// UNUSED CODE SAVED FOR POSTERITY --------------------------------
-// function getCity(business, lat, long, radius) {
-//   console.log("get city fired");
-//   var apiUrl =
-//     `https://maps.googleapis.com/maps/api/place/autocomplete/json?input=` +
-//     business +
-//     `&types=establishment&location=` +
-//     cityLat +
-//     `,` +
-//     cityLng +
-//     `&radius=` +
-//     radius +
-//     `&key=AIzaSyBAXFUJe8DV3hitr0g0IIU07bDHi5215qY&map_ids=ed6a12bea346f8b0`;
-//   fetch(apiUrl)
-//     .then(function (response) {
-//       if (response.ok) {
-//         response.json().then(function (data) {
-//           // waho(data);
-//         });
-//       } else {
-//         alert("Error: " + response.statusText);
-//       }
-//     })
-//     .catch(function (error) {
-//       alert("Unable to connect to Google");
-//     });
-// }
 
 // MAKE USER INPUT USABLE BY OTHER FUNCTIONS----------------
 var formSubmitHandler = function (event) {
