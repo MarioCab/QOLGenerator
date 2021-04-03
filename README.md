@@ -46,7 +46,7 @@ https://mariocab.github.io/QOLGenerator/
 [Frank McDermott] | Slack name: [Frank McDermott] | Github : [fmcdermott4]
 [Annakate Pitts] | Slack name: [Annakate Pitts] | Github : [pittsannakate]
 [Matthew Pawlak] | Slack name: [Matthew Pawlak] | Github : [pharaohnof]
-Project Github Page: [GITHUB PAGE HERE]
+Project Github Page: [https://mariocab.github.io/QOLGenerator/]
 Project Github Repo: [https://github.com/MarioCab/QOLGenerator]
 
 ## List of API's
