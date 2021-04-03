@@ -15,12 +15,6 @@
     <link rel="stylesheet" href="resources/style.css" />
   </head>
   <body>
-    <!--[if lt IE 7]>
-      <p class="browsehappy">
-        You are using an <strong>outdated</strong> browser. Please
-        <a href="#">upgrade your browser</a> to improve your experience.
-      </p>
-    <![endif]-->
     <header>
       <div class="col-12 p-0">
         <header
@@ -37,16 +31,19 @@
     <main class="row justify-content-around">
       <aside class="col-lg-3 col-sm-6 container-fluid">
         <form id="city-form">
+          <!-- CITY INPUT -->
           <div class="mb-3">
             <label for="cityInput" class="form-label"
               >What city are you interested in?</label
             >
             <input type="text" class="form-control" id="cityInput" />
           </div>
+          <!-- STATES DROPDOWN -->
           <div>
             <label for="states">In what state?</label>
             <select name="states" id="states"></select>
           </div>
+          <!-- MAPTYPE DROPDOWN -->
           <div>
             <label for="maptypes">What are you interested in?</label>
             <select name="maptypes" id="maptypes"></select>
@@ -56,28 +53,21 @@
             Submit
           </button>
         </form>
+        <!-- HISTORY BUTTONS CONTAINER -->
         <div
           id="history-button-group"
-          class="btn-group-vertical margin-force col-12 d-md-flex mt-4"
+          class="btn-group-vertical col-12 mt-4 mb-2"
           role="group"
-        ></div>
-        <!-- <div class="btn-group col-12">
-          <button class="btn btn-secondary btn-lg dropdown-toggle d-md-none" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-            History
-          </button>
-          <ul class="dropdown-menu dropdown-menu-end">
-            <div id="history-dropdown" class="btn-group-vertical col-12  " role="group" aria-label="Basic example">
-            </div>
-
-          </ul>
-        </div> -->
+        >
+          <!-- HISTORY BUTTONS INJECTED HERE -->
+        </div>
       </aside>
-      <div id="map"></div>
+      <div id="map">
+        <!-- MAP INJECTED HERE -->
+      </div>
     </main>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="resources/script.js"></script>
-    <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDcCM2rS8Baz7ZgnPKotI3POIqGsaZ4fDw&callback=initMap&libraries=&v=weekly"></script> -->
   </body>
 </html>

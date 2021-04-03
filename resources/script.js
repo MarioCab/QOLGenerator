@@ -1,32 +1,41 @@
-var schoolData = $("#schoolData");
-var crimeData = $("#crimeData");
-var entertainmentData = $("#entertainmentData");
-$("#map").empty();
-
-let map;
-
-var cityLat;
-var cityLng;
 const histBtnGrp = document.getElementById("history-button-group");
 const histDrpGrp = document.getElementById("history-dropdown");
 const searchBtn = $("#searchBtn");
-const storedHist = localStorage.getItem("storedHistStr"); //string of all stored score data
+const storedHist = localStorage.getItem("storedHistStr");
 
+let map;
+var cityLat;
+var cityLng;
 let userCity;
 let userState;
 var searchTxt;
 let searchInnerTxt;
+let mapID;
+let mapTypes;
+
 var formInput = document.querySelector("#city-form");
-
 var userCityInput = document.querySelector("#cityInput");
-
 var stateInput = document.querySelector("#states");
 
-// Populates states dropdown
+var allMaps = `ed6a12bea346f8b0`;
+var storeMap = `f405f4ac9fa44d8f`;
+var parksMap = `84fb282f7a18eb54`;
+var medicalMap = `c45b75f0bf14b409`;
+var foodMap = `bdd06fabc2883316`;
+var attractionsMap = `a2cdf53ce4646f08`;
+
+var formInput = document.querySelector("#city-form");
+var userCityInput = document.querySelector("#cityInput");
+var stateInput = document.querySelector("#states");
+var userTypeInput = document.querySelector("#maptypes");
+
+$("#map").empty(); //EMPTY MAP
+
+// Populates state and maptype dropdowns-------------------
 statesDropdown();
-// restaurantDropdown();
 mapDropdown();
-// state drop down JS
+
+// state drop down JS-----------------------------
 function statesDropdown() {
   var states = [
     "Alabama",
@@ -93,19 +102,8 @@ function statesDropdown() {
     );
   }
 }
-// function restaurantDropdown () {
-//   var restaurants = [
-//     "restaurants",
-//     "entertainment",
-//     "Vermont"
-//   ]
-//   for (i=0; i<restaurants.length; i++) {
-//     $("#restaurants").append(
-//       `<option value="` + restaurants[i] + `" id="` + restaurants[i] +`"> ` + restaurants[i] + `</option>`
-//     )
 
-//   }
-// }
+// Maptype dropdown function----------------------
 function mapDropdown() {
   var mapTypes = ["All", "Stores", "Parks", "Food", "Medical", "Attractions"];
   for (i = 0; i < mapTypes.length; i++) {
@@ -120,65 +118,36 @@ function mapDropdown() {
     );
   }
 }
-function getCity(business, lat, long, radius) {
-  console.log("get city fired");
-  var apiUrl =
-    `https://maps.googleapis.com/maps/api/place/autocomplete/json?input=` +
-    business +
-    `&types=establishment&location=` +
-    cityLat +
-    `,` +
-    cityLng +
-    `&radius=` +
-    radius +
-    `&key=AIzaSyBAXFUJe8DV3hitr0g0IIU07bDHi5215qY&map_ids=ed6a12bea346f8b0`;
-  fetch(apiUrl)
-    .then(function (response) {
-      if (response.ok) {
-        response.json().then(function (data) {
-          waho(data);
-        });
-      } else {
-        alert("Error: " + response.statusText);
-      }
-    })
-    .catch(function (error) {
-      alert("Unable to connect to Google");
-    });
-}
-// takes data from getCity() and does some work with it
-function waho(data) {}
-// provides initial map, source code from https://developers.google.com/maps/documentation/javascript/maptypes
-// function initMap() {
 
-//   $("#map").addClass("col-6 container-fluid");
-//   map = new google.maps.Map(document.getElementById("map"), {
-//     center: { lat: cityLat, lng: cityLng },
-//     zoom: 10,
-//   });
-// }
-// swaps the map to given lat and longitude, code from https://developers.google.com/maps/documentation/javascript/maptypes
-// function swapMap(latitude, longitude) {
-//   console.log('swapmap fired')
-//   var myLatlng = new google.maps.LatLng(latitude, longitude);
-//   var mapOptions = {
-//     zoom: 10,
-//     center: myLatlng,
-//   };
-//   let map;
-//   map = new google.maps.Map(document.getElementById("map"), mapOptions);
+// UNUSED CODE SAVED FOR POSTERITY --------------------------------
+// function getCity(business, lat, long, radius) {
+//   console.log("get city fired");
+//   var apiUrl =
+//     `https://maps.googleapis.com/maps/api/place/autocomplete/json?input=` +
+//     business +
+//     `&types=establishment&location=` +
+//     cityLat +
+//     `,` +
+//     cityLng +
+//     `&radius=` +
+//     radius +
+//     `&key=AIzaSyBAXFUJe8DV3hitr0g0IIU07bDHi5215qY&map_ids=ed6a12bea346f8b0`;
+//   fetch(apiUrl)
+//     .then(function (response) {
+//       if (response.ok) {
+//         response.json().then(function (data) {
+//           // waho(data);
+//         });
+//       } else {
+//         alert("Error: " + response.statusText);
+//       }
+//     })
+//     .catch(function (error) {
+//       alert("Unable to connect to Google");
+//     });
 // }
 
-// Tom's Code
-
-var formInput = document.querySelector("#city-form");
-
-var userCityInput = document.querySelector("#cityInput");
-
-var stateInput = document.querySelector("#states");
-
-var userTypeInput = document.querySelector("#maptypes");
-
+// MAKE USER INPUT USABLE BY OTHER FUNCTIONS----------------
 var formSubmitHandler = function (event) {
   event.preventDefault();
 
@@ -193,16 +162,12 @@ var formSubmitHandler = function (event) {
     map: mapTypes,
   };
 
-  //  `${userCity}, ${userState}, ${mapTypes}`;
-
   console.log(userState);
 
+  // GET LAT/LONG------------------------
   var coorApiUrl =
     "https://api.opencagedata.com/geocode/v1/json?q=" +
     searchTxt.cityState +
-    // userCity +
-    // ", " +
-    // userState +
     "&key=267102cdda164e13b2260039c93d4966&language=en&pretty=1";
 
   fetch(coorApiUrl)
@@ -215,63 +180,14 @@ var formSubmitHandler = function (event) {
       cityLat = data.results[0].geometry.lat;
       cityLng = data.results[0].geometry.lng;
 
-      // localStorage.clear();
-
-      //   function initMap() {
-      //     $("#map").addClass("col-6 container-fluid");
-      //     let map;
-      //     map = new google.maps.Map(document.getElementById("map"), {
-      //       center: { lat: 33.776115270594, lng: -84.39885020256 },
-      //       zoom: 10,
-      //     });
-      //   }
-
-      // getMap ();
-      // getCity();
-
-      // saveInput();
-      // // getMap ();
-      // getCity();
-
-      //   console.log(cityLat, cityLng);
-
-      //   switch (mapTypes) {
-      //     case 'All': //day === 'monday'
-      //         mapID = `ed6a12bea346f8b0`;
-      //         break;
-
-      //     case 'Stores':
-      //         mapID = storeMap;
-      //         break;
-
-      //     case 'Parks':
-      //         mapID = `84fb282f7a18eb54`;
-      //         break;
-
-      //     case 'Medical':
-      //         mapID = `c45b75f0bf14b409`;
-      //         break;
-      //     case 'Food':
-      //         mapID = `bdd06fabc2883316`;
-      //         break;
-
-      //     case 'Attractions':
-      //         mapID = `a2cdf53ce4646f08`;
-      //         break;
-
-      //     default:
-      //       mapID = `ed6a12bea346f8b0`;
-      //   }
-      //   console.log(mapID);
-      //   insertScript();
       saveInput();
       switchFunction();
     });
 };
 
+// maptype switch function-----------------------
 function switchFunction() {
-  // saveInput();
-  getCity();
+  // getCity();
   console.log(cityLat, cityLng);
 
   switch (mapTypes) {
@@ -304,17 +220,8 @@ function switchFunction() {
   console.log(mapID);
   insertScript();
 }
-// var getMap = function initMap() {
 
-// var lat = cityLat;
-// var lng = cityLng;
-var allMaps = `ed6a12bea346f8b0`;
-var storeMap = `f405f4ac9fa44d8f`;
-var parksMap = `84fb282f7a18eb54`;
-var medicalMap = `c45b75f0bf14b409`;
-var foodMap = `bdd06fabc2883316`;
-var attractionsMap = `a2cdf53ce4646f08`;
-
+// initialize map function-----------------------
 function initAllMap() {
   console.log("initAllMap fired");
   $("#map").addClass("col-6 container-fluid");
@@ -325,6 +232,7 @@ function initAllMap() {
   });
 }
 
+// insert google script function to refernce specific maptype----------------------
 function insertScript() {
   if (document.getElementById("newMap")) {
     document.getElementById("newMap").remove();
@@ -336,11 +244,9 @@ function insertScript() {
   script.async = true;
   script.dataset.cfasync = false;
   document.body.appendChild(script);
-  script.addEventListener("load", () => {
-    // resolve();
-  });
 }
 
+// SUBMIT BUTTON LISTENER---------
 formInput.addEventListener("submit", formSubmitHandler);
 
 //STORE SEARCH TEXT IN LOCAL STORAGE ---------------------------
@@ -356,6 +262,7 @@ function saveInput() {
   console.log(searchTxt);
   histArr.unshift(searchTxt);
   if (histArr.length > 4) {
+    //limited to 4 for visual appeal on smaller screens
     histArr.pop();
   }
 
@@ -363,7 +270,7 @@ function saveInput() {
   histBtnGrp.innerHTML = "";
   histArr.forEach(makeHistoryBtn);
 }
-//CREATE HISTORY BUTTONS AND DROPDOWN BUTTONS ON MOBILE SCREENS--------------------------------------------------
+//CREATE HISTORY BUTTONS AND INJECT INTO HTML--------------------------------------------------
 histArr.forEach(makeHistoryBtn);
 function makeHistoryBtn(item, index) {
   const searchCap =
@@ -379,7 +286,7 @@ function makeHistoryBtn(item, index) {
   historyBtn.dataset.map = item.map;
   histBtnGrp.appendChild(historyBtn);
 
-  //MAKE BUTTONS FUNCTION---------------------------------------------------
+  //FUNCTION TO MAKE HISTORY BUTTONS FUNCTION ON CLICK---------------------------------------------------
   $(historyBtn).on("click", function fillField() {
     console.log("button pressed" + this.dataset.citySt);
     searchTxt = this.dataset.cityState;
@@ -404,49 +311,3 @@ function makeHistoryBtn(item, index) {
       });
   });
 }
-let mapID;
-let mapTypes;
-
-// insertScript();
-
-// switch (mapTypes) {
-//   case 'All': //day === 'monday'
-//       mapID = `ed6a12bea346f8b0`;
-//       break;
-
-//   case 'Stores':
-//       mapID = storeMap;
-//       break;
-
-//   case 'Parks':
-//       mapID = `84fb282f7a18eb54`;
-//       break;
-
-//   case 'Medical':
-//       mapID = `c45b75f0bf14b409`;
-//       break;
-//   case 'Food':
-//       mapID = `bdd06fabc2883316`;
-//       break;
-
-//   case 'Attractions':
-//       mapID = `a2cdf53ce4646f08`;
-//       break;
-
-//   default:
-//     mapID = `ed6a12bea346f8b0`;
-// }
-
-// insertScript();
-
-// function getNearbyPlaces() {
-//   var placesURL = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=33.776,-84.398&radius=5000&type=police&key=AIzaSyBAXFUJe8DV3hitr0g0IIU07bDHi5215qY`;
-//   fetch(placesURL)
-//     .then(function (response) {
-//       return response.json();
-//     })
-//     .then(function (data) {
-//       console.log(data);
-//     });
-// }
-// getNearbyPlaces();
