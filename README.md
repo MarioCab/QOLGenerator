@@ -27,7 +27,7 @@ A map will appear with the chosen elements present in that particular area. Addi
 
 jQuery - Used for dropdowns and event listeners of elements as well as to store and recall those varible in local storage to be displayed dynamically in HTML on the page. 
 javascript - Used to dynamically change html and store user-input.
-Bootstrap - Used to pull existing html and CSS for creating resposive organizational structer and styling for the site.
+Bootstrap - Used to pull existing html and CSS for creating responsive organizational structer and styling for the site.
 HTML - Used to create elements on the DOM
 CSS - Styles html elements on page
 Git - Version control system to track changes to source code
