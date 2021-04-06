@@ -3,7 +3,7 @@
 # Summary
 This application is a Quality of Life Research tool to find the ins and outs of a new or unfamiliar city. In this application, one can search any city in the United States and specify if they want to find food, medical, attractions, parks, stores, or all of the above. 
 
-In order to create this application, we used the Google Maps API. Through this, we created five different maps for food, medical, attractions, parks, and stores. Each map uses an API function to pull that specific information from the Google Maps API. 
+In order to create this application, we used the Google Maps API. Through this, we created five different maps for food, medical, attractions, parks, and stores. Each map uses an API function to pull that specific information from the Google Maps API and Google Places API. 
 
 Additionally, we used the Geocode API to take in the user's city and state and spit out the latitude and longitude.
 
