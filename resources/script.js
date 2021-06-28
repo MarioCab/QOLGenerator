@@ -213,7 +213,7 @@ function insertScript() {
   const script = document.createElement("script");
   script.setAttribute("id", "newMap");
   script.type = "text/javascript";
-  script.src = `https://maps.googleapis.com/maps/api/js?key=&map_ids=${mapID}&callback=initAllMap`;
+  script.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyBAXFUJe8DV3hitr0g0IIU07bDHi5215qY&map_ids=${mapID}&callback=initAllMap`;
   script.async = true;
   script.dataset.cfasync = false;
   document.body.appendChild(script);
